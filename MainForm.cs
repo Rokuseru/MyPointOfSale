@@ -59,5 +59,11 @@ namespace MyPointOfSale
             productList.loadRecords();
             productList.Show();          
         }
+
+        private void btnStockIn_Click(object sender, EventArgs e)
+        {
+            frmStockIn frmStock = new frmStockIn();
+            frmStock.ShowDialog();
+        }
     }
 }

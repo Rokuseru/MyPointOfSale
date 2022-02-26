@@ -113,6 +113,16 @@ namespace MyPointOfSale.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap icons8_check_20 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-check-20", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap icons8_checklist_30 {
             get {
                 object obj = ResourceManager.GetObject("icons8_checklist_30", resourceCulture);
@@ -226,6 +236,16 @@ namespace MyPointOfSale.Properties {
         public static System.Drawing.Bitmap icons8_shopping_cart_30__1_ {
             get {
                 object obj = ResourceManager.GetObject("icons8_shopping_cart_30__1_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap icons8_stock_30 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-stock-30", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

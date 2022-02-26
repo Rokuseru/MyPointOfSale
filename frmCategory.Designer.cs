@@ -136,9 +136,8 @@
             this.lblD.AutoSize = true;
             this.lblD.Location = new System.Drawing.Point(356, 103);
             this.lblD.Name = "lblD";
-            this.lblD.Size = new System.Drawing.Size(38, 15);
+            this.lblD.Size = new System.Drawing.Size(0, 15);
             this.lblD.TabIndex = 13;
-            this.lblD.Text = "label3";
             this.lblD.Visible = false;
             // 
             // frmCategory

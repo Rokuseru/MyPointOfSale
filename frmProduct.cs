@@ -97,8 +97,9 @@ namespace MyPointOfSale
 
 
                     conn.Open();
-                    cmd = new SqlCommand("INSERT INTO tblProduct (pcode, pdesc, bid, cid, price) VALUES (@pcode, @pdesc, @bid, @cid, @price)", conn);
+                    cmd = new SqlCommand("INSERT INTO tblProduct (pcode, barcode, pdesc, bid, cid, price) VALUES (@pcode, @barcode, @pdesc, @bid, @cid, @price)", conn);
                     cmd.Parameters.AddWithValue("@pcode", txtbProductCode.Text);
+                    cmd.Parameters.AddWithValue("@barcode", txtbBarcode.Text);
                     cmd.Parameters.AddWithValue("@pdesc", txtbDescription.Text);
                     cmd.Parameters.AddWithValue("@bid", bid);
                     cmd.Parameters.AddWithValue("@cid", cid);
@@ -120,6 +121,8 @@ namespace MyPointOfSale
         public void clear()
         {
             txtbDescription.Clear();
+            txtbPrice.Clear();
+            txtbBarcode.Clear();
             txtbPrice.Clear();
             cBoxBrand.Text = "";
             cBoxCategory.Text = "";
@@ -153,8 +156,9 @@ namespace MyPointOfSale
                     conn.Close();
 
                     conn.Open();
-                    cmd = new SqlCommand("UPDATE tblProduct SET pdesc=@pdesc, bid=@bid, cid=@cid, price=@price", conn);
+                    cmd = new SqlCommand("UPDATE tblProduct SET barcode=@barcode, pdesc=@pdesc, bid=@bid, cid=@cid, price=@price", conn);
                     cmd.Parameters.AddWithValue("@pcode", txtbProductCode.Text);
+                    cmd.Parameters.AddWithValue("@barcode", txtbBarcode.Text);
                     cmd.Parameters.AddWithValue("@pdesc", txtbDescription.Text);
                     cmd.Parameters.AddWithValue("@bid", bid);
                     cmd.Parameters.AddWithValue("@cid", cid);
@@ -180,6 +184,21 @@ namespace MyPointOfSale
             clear();
         }
 
-        
+        private void txtbPrice_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 46)
+            {
+                //accepts .(dot) character
+            }
+            else if (e.KeyChar == 8)
+            {
+                //accepts backspace
+            }
+            else if ((e.KeyChar < 48) || (e.KeyChar > 57))
+            {
+                //accepts numbers from 0-9
+                e.Handled = true;
+            }
+        }
     }
 }

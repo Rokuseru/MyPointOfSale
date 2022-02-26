@@ -45,6 +45,8 @@
             this.label7 = new System.Windows.Forms.Label();
             this.cBoxBrand = new System.Windows.Forms.ComboBox();
             this.cBoxCategory = new System.Windows.Forms.ComboBox();
+            this.txtbBarcode = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -81,25 +83,24 @@
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(248)))), ((int)(((byte)(252)))));
             this.label1.Location = new System.Drawing.Point(12, 12);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(119, 22);
+            this.label1.Size = new System.Drawing.Size(133, 22);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Brand Module";
+            this.label1.Text = "Product Module";
             // 
             // lblD
             // 
             this.lblD.AutoSize = true;
-            this.lblD.Location = new System.Drawing.Point(363, 224);
+            this.lblD.Location = new System.Drawing.Point(363, 259);
             this.lblD.Name = "lblD";
-            this.lblD.Size = new System.Drawing.Size(38, 15);
+            this.lblD.Size = new System.Drawing.Size(0, 15);
             this.lblD.TabIndex = 19;
-            this.lblD.Text = "label3";
             this.lblD.Visible = false;
             // 
             // btnCancel
             // 
             this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(225)))), ((int)(((byte)(229)))));
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancel.Location = new System.Drawing.Point(262, 220);
+            this.btnCancel.Location = new System.Drawing.Point(262, 255);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 18;
@@ -111,7 +112,7 @@
             // 
             this.btnUpdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(225)))), ((int)(((byte)(229)))));
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUpdate.Location = new System.Drawing.Point(188, 220);
+            this.btnUpdate.Location = new System.Drawing.Point(188, 255);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(75, 23);
             this.btnUpdate.TabIndex = 17;
@@ -123,7 +124,7 @@
             // 
             this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(225)))), ((int)(((byte)(229)))));
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSave.Location = new System.Drawing.Point(114, 220);
+            this.btnSave.Location = new System.Drawing.Point(114, 255);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 16;
@@ -152,7 +153,7 @@
             // txtbDescription
             // 
             this.txtbDescription.Font = new System.Drawing.Font("Open Sans Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtbDescription.Location = new System.Drawing.Point(114, 92);
+            this.txtbDescription.Location = new System.Drawing.Point(114, 122);
             this.txtbDescription.Name = "txtbDescription";
             this.txtbDescription.Size = new System.Drawing.Size(433, 24);
             this.txtbDescription.TabIndex = 21;
@@ -161,7 +162,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Open Sans Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(34, 95);
+            this.label3.Location = new System.Drawing.Point(34, 125);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(74, 17);
             this.label3.TabIndex = 20;
@@ -171,7 +172,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Open Sans Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(65, 125);
+            this.label4.Location = new System.Drawing.Point(65, 155);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(43, 17);
             this.label4.TabIndex = 22;
@@ -180,16 +181,17 @@
             // txtbPrice
             // 
             this.txtbPrice.Font = new System.Drawing.Font("Open Sans Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtbPrice.Location = new System.Drawing.Point(114, 182);
+            this.txtbPrice.Location = new System.Drawing.Point(114, 212);
             this.txtbPrice.Name = "txtbPrice";
             this.txtbPrice.Size = new System.Drawing.Size(433, 24);
             this.txtbPrice.TabIndex = 27;
+            this.txtbPrice.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbPrice_KeyPress);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Open Sans Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(72, 185);
+            this.label6.Location = new System.Drawing.Point(72, 215);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(36, 17);
             this.label6.TabIndex = 26;
@@ -199,7 +201,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Open Sans Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(48, 155);
+            this.label7.Location = new System.Drawing.Point(48, 185);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(60, 17);
             this.label7.TabIndex = 24;
@@ -208,7 +210,7 @@
             // cBoxBrand
             // 
             this.cBoxBrand.FormattingEnabled = true;
-            this.cBoxBrand.Location = new System.Drawing.Point(114, 122);
+            this.cBoxBrand.Location = new System.Drawing.Point(114, 152);
             this.cBoxBrand.Name = "cBoxBrand";
             this.cBoxBrand.Size = new System.Drawing.Size(433, 23);
             this.cBoxBrand.TabIndex = 30;
@@ -216,17 +218,37 @@
             // cBoxCategory
             // 
             this.cBoxCategory.FormattingEnabled = true;
-            this.cBoxCategory.Location = new System.Drawing.Point(114, 153);
+            this.cBoxCategory.Location = new System.Drawing.Point(114, 183);
             this.cBoxCategory.Name = "cBoxCategory";
             this.cBoxCategory.Size = new System.Drawing.Size(433, 23);
             this.cBoxCategory.TabIndex = 31;
+            // 
+            // txtbBarcode
+            // 
+            this.txtbBarcode.Font = new System.Drawing.Font("Open Sans Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtbBarcode.Location = new System.Drawing.Point(114, 92);
+            this.txtbBarcode.Name = "txtbBarcode";
+            this.txtbBarcode.Size = new System.Drawing.Size(433, 24);
+            this.txtbBarcode.TabIndex = 33;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Open Sans Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(48, 95);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(55, 17);
+            this.label5.TabIndex = 32;
+            this.label5.Text = "Barcode";
             // 
             // frmProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(608, 262);
+            this.ClientSize = new System.Drawing.Size(608, 303);
             this.ControlBox = false;
+            this.Controls.Add(this.txtbBarcode);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.cBoxCategory);
             this.Controls.Add(this.cBoxBrand);
             this.Controls.Add(this.txtbPrice);
@@ -273,5 +295,7 @@
         private System.Windows.Forms.Label label7;
         public System.Windows.Forms.ComboBox cBoxBrand;
         public System.Windows.Forms.ComboBox cBoxCategory;
+        public System.Windows.Forms.TextBox txtbBarcode;
+        private System.Windows.Forms.Label label5;
     }
 }

@@ -80,7 +80,7 @@ namespace MyPointOfSale
                     string bid = "";
                     string cid = "";
                     conn.Open();
-                    cmd = new SqlCommand("SELECT id FROM tblBrand WHERE brand LIKE '" + cBoxBrand + "'", conn);
+                    cmd = new SqlCommand("SELECT id FROM tblBrand WHERE brand LIKE '" + cBoxBrand.Text + "'", conn);
                     dataReader = cmd.ExecuteReader();
                     dataReader.Read();
                     if (dataReader.HasRows) { bid = dataReader[0].ToString(); }
@@ -88,7 +88,7 @@ namespace MyPointOfSale
                     conn.Close();
 
                     conn.Open();
-                    cmd = new SqlCommand("SELECT id FROM tblCategory WHERE category LIKE '" + cBoxCategory + "'", conn);
+                    cmd = new SqlCommand("SELECT id FROM tblCategory WHERE category LIKE '" + cBoxCategory.Text + "'", conn);
                     dataReader = cmd.ExecuteReader();
                     dataReader.Read();
                     if (dataReader.HasRows) { cid = dataReader[0].ToString(); }
@@ -108,7 +108,6 @@ namespace MyPointOfSale
                     MessageBox.Show("Saved Successfuly");
                     clear();
                     prodList.loadRecords();
-                    this.Dispose();
                 }
             }
             catch (Exception ex)
@@ -121,7 +120,6 @@ namespace MyPointOfSale
         public void clear()
         {
             txtbDescription.Clear();
-            txtBInitQuantity.Clear();
             txtbPrice.Clear();
             cBoxBrand.Text = "";
             cBoxCategory.Text = "";
@@ -139,7 +137,7 @@ namespace MyPointOfSale
                     string bid = "";
                     string cid = "";
                     conn.Open();
-                    cmd = new SqlCommand("SELECT id FROM tblBrand WHERE brand LIKE '" + cBoxBrand + "'", conn);
+                    cmd = new SqlCommand("SELECT id FROM tblBrand WHERE brand LIKE '" + cBoxBrand.Text + "'", conn);
                     dataReader = cmd.ExecuteReader();
                     dataReader.Read();
                     if (dataReader.HasRows) { bid = dataReader[0].ToString(); }
@@ -147,7 +145,7 @@ namespace MyPointOfSale
                     conn.Close();
 
                     conn.Open();
-                    cmd = new SqlCommand("SELECT id FROM tblCategory WHERE category LIKE '" + cBoxCategory + "'", conn);
+                    cmd = new SqlCommand("SELECT id FROM tblCategory WHERE category LIKE '" + cBoxCategory.Text + "'", conn);
                     dataReader = cmd.ExecuteReader();
                     dataReader.Read();
                     if (dataReader.HasRows) { cid = dataReader[0].ToString(); }

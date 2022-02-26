@@ -208,8 +208,7 @@
             this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.Column2.HeaderText = "PRODUCT CODE";
             this.Column2.Name = "Column2";
-            this.Column2.Visible = false;
-            this.Column2.Width = 117;
+            this.Column2.Width = 115;
             // 
             // Column3
             // 
@@ -288,6 +287,8 @@
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Panel panel2;
+        private MetroFramework.Controls.MetroTextBox metrotbSearch;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
@@ -297,7 +298,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewImageColumn Edit;
         private System.Windows.Forms.DataGridViewImageColumn Delete;
-        private System.Windows.Forms.Panel panel2;
-        private MetroFramework.Controls.MetroTextBox metrotbSearch;
     }
 }

@@ -45,23 +45,18 @@ namespace MyPointOfSale
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            string colName = dataGridView1.Columns[e.RowIndex].Name;
+            string colName = dataGridView1.Columns[e.ColumnIndex].Name;
 
             if (colName == "Edit")
             {
                 frmProduct product = new frmProduct(this);
                 product.btnSave.Enabled = false;
                 product.btnUpdate.Enabled = true;
-                product.txtbProductCode.Text = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
-                product.txtbDescription.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
-                product.txtbPrice.Text = dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString();
-
-                conn.Open();
-                cmd = new SqlCommand();
-
-
-                product.cBoxBrand.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
-                product.cBoxCategory.Text = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
+                product.txtbProductCode.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
+                product.txtbDescription.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
+                product.txtbPrice.Text = dataGridView1.Rows[e.RowIndex].Cells[5].Value.ToString();
+                product.cBoxBrand.Text = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
+                product.cBoxCategory.Text = dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString();
                 product.ShowDialog();
             }
             else if (colName == "Delete")
@@ -82,12 +77,12 @@ namespace MyPointOfSale
 
             dataGridView1.Rows.Clear();
             conn.Open();
-            cmd = new SqlCommand("SELECT p.pcode, p.pdesc, b.brand, c.category, p.price FROM tblProduct AS p INNER JOIN tblBrand AS b ON b.id = p.bid INNER JOIN tblCategory AS c ON c.id = p.cid WHERE p.pdesc LIKE '" + metrotbSearch.Text + "%'", conn);
+            cmd = new SqlCommand("SELECT p.pcode, p.pdesc, b.brand, c.category, p.price, p.quantity FRom tblProduct p LEFT JOIN tblBrand b on p.bid = b.id LEFT join tblCategory c on p.cid = c.id where p.pdesc LIKE '" + metrotbSearch.Text+"%'", conn);
             dR = cmd.ExecuteReader();
             while (dR.Read())
             {
                 i += 1;
-                dataGridView1.Rows.Add(i, dR[0].ToString(), dR[1].ToString(), dR[2].ToString(), dR[3].ToString(), dR[4].ToString());
+                dataGridView1.Rows.Add(i, dR[0].ToString(), dR[1].ToString(), dR[2].ToString(), dR[3].ToString(), dR[4].ToString(), dR[5].ToString());
             }
             dR.Close();
             conn.Close();

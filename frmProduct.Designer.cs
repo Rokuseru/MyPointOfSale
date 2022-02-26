@@ -40,8 +40,6 @@
             this.txtbDescription = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtBInitQuantity = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.txtbPrice = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -90,7 +88,7 @@
             // lblD
             // 
             this.lblD.AutoSize = true;
-            this.lblD.Location = new System.Drawing.Point(363, 248);
+            this.lblD.Location = new System.Drawing.Point(363, 224);
             this.lblD.Name = "lblD";
             this.lblD.Size = new System.Drawing.Size(38, 15);
             this.lblD.TabIndex = 19;
@@ -101,7 +99,7 @@
             // 
             this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(225)))), ((int)(((byte)(229)))));
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancel.Location = new System.Drawing.Point(262, 244);
+            this.btnCancel.Location = new System.Drawing.Point(262, 220);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 18;
@@ -113,7 +111,7 @@
             // 
             this.btnUpdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(225)))), ((int)(((byte)(229)))));
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUpdate.Location = new System.Drawing.Point(188, 244);
+            this.btnUpdate.Location = new System.Drawing.Point(188, 220);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(75, 23);
             this.btnUpdate.TabIndex = 17;
@@ -125,7 +123,7 @@
             // 
             this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(225)))), ((int)(((byte)(229)))));
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSave.Location = new System.Drawing.Point(114, 244);
+            this.btnSave.Location = new System.Drawing.Point(114, 220);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 16;
@@ -179,24 +177,6 @@
             this.label4.TabIndex = 22;
             this.label4.Text = "Brand";
             // 
-            // txtBInitQuantity
-            // 
-            this.txtBInitQuantity.Font = new System.Drawing.Font("Open Sans Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBInitQuantity.Location = new System.Drawing.Point(114, 212);
-            this.txtBInitQuantity.Name = "txtBInitQuantity";
-            this.txtBInitQuantity.Size = new System.Drawing.Size(433, 24);
-            this.txtBInitQuantity.TabIndex = 29;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Open Sans Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(41, 215);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(67, 17);
-            this.label5.TabIndex = 28;
-            this.label5.Text = "Initial Qty.";
-            // 
             // txtbPrice
             // 
             this.txtbPrice.Font = new System.Drawing.Font("Open Sans Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -245,12 +225,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(608, 280);
+            this.ClientSize = new System.Drawing.Size(608, 262);
             this.ControlBox = false;
             this.Controls.Add(this.cBoxCategory);
             this.Controls.Add(this.cBoxBrand);
-            this.Controls.Add(this.txtBInitQuantity);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.txtbPrice);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label7);
@@ -290,8 +268,6 @@
         public System.Windows.Forms.TextBox txtbDescription;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        public System.Windows.Forms.TextBox txtBInitQuantity;
-        private System.Windows.Forms.Label label5;
         public System.Windows.Forms.TextBox txtbPrice;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;

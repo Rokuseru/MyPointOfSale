@@ -56,6 +56,7 @@ namespace MyPointOfSale
             productList.TopLevel = false;
             mainFormPanel.Controls.Add(productList);
             productList.BringToFront();
+            productList.loadRecords();
             productList.Show();          
         }
     }

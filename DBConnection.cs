@@ -10,7 +10,7 @@ namespace MyPointOfSale
     {
         public string myConnection()
         {
-            string con = @"Data Source=DESKTOP-8AL5GOK\SQLEXPRESS;Initial Catalog=MY_POS_DEMO_DB;Integrated Security=True";
+            string con = @"Data Source=desktop-8al5gok\sqlexpress;Initial Catalog=MyPointofsaleDemo_DB;Integrated Security=True";
             return con;
         }
     }

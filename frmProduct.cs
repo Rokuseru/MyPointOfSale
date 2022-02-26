@@ -77,51 +77,46 @@ namespace MyPointOfSale
             {
                 if (MessageBox.Show("Are you sure you want to add this product?", "Saving Product...", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    string bid = " ";
-                    string cid = " ";
-                    //for Brand
+                    string bid = "";
+                    string cid = "";
                     conn.Open();
-                    cmd = new SqlCommand("SELECT id FROM tblBrand WHERE brand LIKE '" +cBoxBrand.Text + "'", conn);
+                    cmd = new SqlCommand("SELECT id FROM tblBrand WHERE brand LIKE '" + cBoxBrand + "'", conn);
                     dataReader = cmd.ExecuteReader();
                     dataReader.Read();
-
-                    if (dataReader.HasRows)
-                    {
-                        bid = dataReader[0].ToString();
-                    }
-                    dataReader.Close();
-                    conn.Close();
-                    //For Category
-                    conn.Open();
-                    cmd = new SqlCommand("SELECT id FROM tblCategory WHERE category LIKE '" + cBoxCategory.Text + "'", conn);
-                    dataReader = cmd.ExecuteReader();
-                    dataReader.Read();
-
-                    if (dataReader.HasRows)
-                    {
-                        cid = dataReader[0].ToString();
-                    }
+                    if (dataReader.HasRows) { bid = dataReader[0].ToString(); }
                     dataReader.Close();
                     conn.Close();
 
                     conn.Open();
-                    cmd = new SqlCommand("INSERT INTO tblBrand (pcode, pdesc, bid, cid, price) VALUES (@pcode, @pdesc, @bid, @cid, @price)");
+                    cmd = new SqlCommand("SELECT id FROM tblCategory WHERE category LIKE '" + cBoxCategory + "'", conn);
+                    dataReader = cmd.ExecuteReader();
+                    dataReader.Read();
+                    if (dataReader.HasRows) { cid = dataReader[0].ToString(); }
+                    dataReader.Close();
+                    conn.Close();
+
+
+                    conn.Open();
+                    cmd = new SqlCommand("INSERT INTO tblProduct (pcode, pdesc, bid, cid, price) VALUES (@pcode, @pdesc, @bid, @cid, @price)", conn);
                     cmd.Parameters.AddWithValue("@pcode", txtbProductCode.Text);
                     cmd.Parameters.AddWithValue("@pdesc", txtbDescription.Text);
                     cmd.Parameters.AddWithValue("@bid", bid);
                     cmd.Parameters.AddWithValue("@cid", cid);
-                    cmd.Parameters.AddWithValue("@price", txtbPrice);
+                    cmd.Parameters.AddWithValue("@price", txtbPrice.Text);
+                    cmd.ExecuteNonQuery();
                     conn.Close();
-
-                    MessageBox.Show("Saved Successfuly", "SAVED");
+                    MessageBox.Show("Saved Successfuly");
                     clear();
                     prodList.loadRecords();
+                    this.Dispose();
                 }
-            }catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 conn.Close();
-                MessageBox.Show(ex.Message,"Error");
+                MessageBox.Show(ex.Message, "Error");
             }
+           
         }
         public void clear()
         {
@@ -139,48 +134,40 @@ namespace MyPointOfSale
         {
             try
             {
-                if (MessageBox.Show("Are you sure you want to update this product?", "Saving Category...", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("Are you sure you want to update this product?", "Saving Product...", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    string bid = " ";
-                    string cid = " ";
-                    //for Brand
+                    string bid = "";
+                    string cid = "";
                     conn.Open();
-                    cmd = new SqlCommand("SELECT id FROM tblBrand WHERE brand LIKE '" + cBoxBrand.Text + "'", conn);
+                    cmd = new SqlCommand("SELECT id FROM tblBrand WHERE brand LIKE '" + cBoxBrand + "'", conn);
                     dataReader = cmd.ExecuteReader();
                     dataReader.Read();
-
-                    if (dataReader.HasRows)
-                    {
-                        bid = dataReader[0].ToString();
-                    }
-                    dataReader.Close();
-                    conn.Close();
-                    //For Category
-                    conn.Open();
-                    cmd = new SqlCommand("SELECT id FROM tblCategory WHERE category LIKE '" + cBoxCategory.Text + "'", conn);
-                    dataReader = cmd.ExecuteReader();
-                    dataReader.Read();
-
-                    if (dataReader.HasRows)
-                    {
-                        cid = dataReader[0].ToString();
-                    }
+                    if (dataReader.HasRows) { bid = dataReader[0].ToString(); }
                     dataReader.Close();
                     conn.Close();
 
                     conn.Open();
-                    cmd = new SqlCommand("UPDATE tblProduct SET pdesc=@pdesc, bid=@bid, cid=@cid, price=@price ");
+                    cmd = new SqlCommand("SELECT id FROM tblCategory WHERE category LIKE '" + cBoxCategory + "'", conn);
+                    dataReader = cmd.ExecuteReader();
+                    dataReader.Read();
+                    if (dataReader.HasRows) { cid = dataReader[0].ToString(); }
+                    dataReader.Close();
+                    conn.Close();
+
+                    conn.Open();
+                    cmd = new SqlCommand("UPDATE tblProduct SET pdesc=@pdesc, bid=@bid, cid=@cid, price=@price", conn);
                     cmd.Parameters.AddWithValue("@pcode", txtbProductCode.Text);
                     cmd.Parameters.AddWithValue("@pdesc", txtbDescription.Text);
                     cmd.Parameters.AddWithValue("@bid", bid);
                     cmd.Parameters.AddWithValue("@cid", cid);
-                    cmd.Parameters.AddWithValue("@price", txtbPrice);
+                    cmd.Parameters.AddWithValue("@price", txtbPrice.Text);
+                    cmd.ExecuteNonQuery();
                     conn.Close();
-
-                    MessageBox.Show("Updated Successfuly", "UPDATED");
+                    MessageBox.Show("Updated Successfuly");
                     clear();
                     prodList.loadRecords();
                     this.Dispose();
+
                 }
             }
             catch (Exception ex)

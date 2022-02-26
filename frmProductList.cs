@@ -16,7 +16,7 @@ namespace MyPointOfSale
         SqlConnection conn = new SqlConnection();
         SqlCommand cmd = new SqlCommand();
         DBConnection dbCon = new DBConnection();
-        SqlDataReader dataReader;
+        SqlDataReader dR;
         public frmProductList()
         {
             InitializeComponent();
@@ -38,24 +38,6 @@ namespace MyPointOfSale
             product.ShowDialog();
         }
 
-        public void loadRecords()
-        {
-            dataGridView1.Rows.Clear();
-            conn.Open();
-            cmd = new SqlCommand("SELECT p.pcode, p.pdesc, b.brand, c.category, p.price FROM tblProduct as p FULL JOIN tblBrand AS b ON b.id = p.bid FULL JOIN tblCategory AS c ON c.id = p.cid WHERE p.pdesc LIKE'" + metrotbSearch.Text+ "%'", conn);
-            dataReader = cmd.ExecuteReader();
-
-            while (dataReader.Read())
-            {
-                int i = 0;
-                i++;
-                dataGridView1.Rows.Add(i, dataReader[0].ToString(), dataReader[1].ToString(), dataReader[2].ToString(), dataReader[3].ToString());
-            }
-
-            dataReader.Close();
-            conn.Close();
-        }
-
         private void metrotbSearch_TextChanged(object sender, EventArgs e)
         {
             loadRecords();
@@ -73,11 +55,16 @@ namespace MyPointOfSale
                 product.txtbProductCode.Text = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
                 product.txtbDescription.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
                 product.txtbPrice.Text = dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString();
+
+                conn.Open();
+                cmd = new SqlCommand();
+
+
                 product.cBoxBrand.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
                 product.cBoxCategory.Text = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
                 product.ShowDialog();
             }
-            else
+            else if (colName == "Delete")
             {
                 if (MessageBox.Show("Delete Record?", "Delete Record", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)==DialogResult.Yes)
                 {
@@ -88,6 +75,22 @@ namespace MyPointOfSale
                     loadRecords();
                 }
             }
+        }
+        public void loadRecords()
+        {
+            int i = 0;
+
+            dataGridView1.Rows.Clear();
+            conn.Open();
+            cmd = new SqlCommand("SELECT p.pcode, p.pdesc, b.brand, c.category, p.price FROM tblProduct AS p INNER JOIN tblBrand AS b ON b.id = p.bid INNER JOIN tblCategory AS c ON c.id = p.cid WHERE p.pdesc LIKE '" + metrotbSearch.Text + "%'", conn);
+            dR = cmd.ExecuteReader();
+            while (dR.Read())
+            {
+                i += 1;
+                dataGridView1.Rows.Add(i, dR[0].ToString(), dR[1].ToString(), dR[2].ToString(), dR[3].ToString(), dR[4].ToString());
+            }
+            dR.Close();
+            conn.Close();
         }
     }
 }

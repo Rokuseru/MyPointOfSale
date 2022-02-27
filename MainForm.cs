@@ -63,6 +63,8 @@ namespace MyPointOfSale
         private void btnStockIn_Click(object sender, EventArgs e)
         {
             frmStockIn frmStock = new frmStockIn();
+            frmStock.loadProduct();
+            frmStock.loadStockIn();
             frmStock.ShowDialog();
         }
     }

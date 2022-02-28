@@ -27,76 +27,25 @@ namespace MyPointOfSale
         {
             this.Close();
         }
-        public void loadProduct()
-        {
-
-            try
-            {
-                int i = 0;
-                dataGridView1.Rows.Clear();
-                conn.Open();
-                cmd = new SqlCommand("SElECT pcode, pdesc, quantity FROM tblProduct WHERE pdesc LIKE '%" + metrotbSearch.Text + "%' ORDER BY pdesc", conn);
-                dataReader = cmd.ExecuteReader();
-                while (dataReader.Read())
-                {
-                    i += 1;
-                    dataGridView1.Rows.Add(i, dataReader[0].ToString(), dataReader[1].ToString(), dataReader[2].ToString());
-                }
-                conn.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
+        
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            try
-
-    {
-                string colName = dataGridView1.Columns[e.ColumnIndex].Name;
-
-                if (colName == "Select")
-                {
-                    if (MessageBox.Show("Add this item?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                    {
-                        conn.Open();
-
-                        cmd = new SqlCommand("INSERT INTO tblStockIn (refno, pcode, sidate, stockindateby) VALUES (@refno, @pcode, @sidate, @stockindateby)",conn);/* + dataGridView1.Rows[e.RowIndex].Cells[1].ToString() + "'", conn);*/
-                        cmd.Parameters.AddWithValue("@refno", txtbRefNo.Text);
-                        cmd.Parameters.AddWithValue("@pcode", dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString());
-                        cmd.Parameters.AddWithValue("@sidate", dtpStockInDate.Value);
-                        cmd.Parameters.AddWithValue("@stockindateby", txtbStockInBy.Text);
-                        cmd.ExecuteNonQuery();
-                        conn.Close();
-
-                        MessageBox.Show("Added Successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        loadStockIn();
-                    }
-
-                }
-            }catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
+           
         }
-        public void loadStockIn()
+        public void loadStockInHistory()
         {
             try
             {
                 int i = 0;
 
-                dataGridView2.Rows.Clear();
+                dataGridStockHistory.Rows.Clear();
                 conn.Open();
-
-                cmd = new SqlCommand("SELECt * FROM viewStockIn" ,conn);
+                cmd = new SqlCommand("SELECT * FROM viewStockIn WHERE sidate BETWEEN '"+dt1.Value.ToString("dd-MMM-yyyy") +"' AND '"+ dt2.Value.ToString("dd-MMM-yyyy") + "' AND status LIKE 'Done'", conn);
                 dataReader = cmd.ExecuteReader();
                 while (dataReader.Read())
                 {
                     i += 1;
-                    dataGridView2.Rows.Add(i, dataReader["id"].ToString(), dataReader["refno"].ToString(), dataReader["pcode"].ToString(), dataReader["pdesc"].ToString(), dataReader["sidate"].ToString(), dataReader["stockindateby"].ToString(), dataReader["quantity"].ToString());
+                    dataGridStockHistory.Rows.Add(i, dataReader["id"].ToString(), dataReader["refno"].ToString(), dataReader["pcode"].ToString(), dataReader["pdesc"].ToString(), DateTime.Parse(dataReader["sidate"].ToString()).ToString("dd-MMM-yyyy"), dataReader["stockindateby"].ToString(), dataReader["quantity"].ToString());
                 }
                 dataReader.Close();
                 conn.Close();
@@ -108,7 +57,33 @@ namespace MyPointOfSale
             }
         }
 
-        private void txtbStockInBy_KeyPress(object sender, KeyPressEventArgs e)
+        public void loadStockIn()
+        {
+            try
+            {
+                int i = 0;
+
+                dataGridView2.Rows.Clear();
+                conn.Open();
+                cmd = new SqlCommand(@"SELECT dbo.tblStockIn.id, dbo.tblStockIn.refno, dbo.tblStockIn.pcode, dbo.tblStockIn.sidate, dbo.tblStockIn.quantity, dbo.tblStockIn.stockindateby, dbo.tblProduct.pdesc 
+                                       FROM dbo.tblStockIn INNER JOIN dbo.tblProduct ON dbo.tblStockIn.pcode = dbo.tblProduct.pcode WHERE refno LIKE '"+ txtbRefNo.Text +"' AND status LIKE 'Pending'" ,conn);
+                dataReader = cmd.ExecuteReader();
+                while (dataReader.Read())
+                {
+                    i += 1;
+                    dataGridView2.Rows.Add(i, dataReader["id"].ToString(), dataReader["refno"].ToString(), dataReader["pcode"].ToString(), dataReader["pdesc"].ToString(), DateTime.Parse(dataReader["sidate"].ToString()).ToString("dd-MMM-yyyy"), dataReader["stockindateby"].ToString(), dataReader["quantity"].ToString());
+                }
+                dataReader.Close();
+                conn.Close();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void txtbRefNo_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == 46)
             {
@@ -123,6 +98,114 @@ namespace MyPointOfSale
                 //accepts numbers from 0-9
                 e.Handled = true;
             }
+        }
+
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                string colName = dataGridView2.Columns[e.ColumnIndex].Name;
+                if (colName == "Delete")
+                {
+                    if (MessageBox.Show("Delete this item?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        conn.Open();
+                        cmd = new SqlCommand("DELETE FROM tblStockIn WHERE id = '" + dataGridView2.Rows[e.RowIndex].Cells[1].Value.ToString() + "'", conn);
+                        cmd.ExecuteNonQuery();
+                        MessageBox.Show("Deleted Successfully", "POS", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        conn.Close();
+                        loadStockIn();
+                        refresh();
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                conn.Close();
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void frmStockIn_Load(object sender, EventArgs e)
+        {
+            loadStockIn();
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            #pragma warning disable CS0612 // Type or member is obsolete
+            frmSearchProduct_StockIn frmSearchProduct = new frmSearchProduct_StockIn(this);
+            #pragma warning restore CS0612 // Type or member is obsolete
+            frmSearchProduct.loadProduct();
+            frmSearchProduct.ShowDialog();
+        }
+        public void clear()
+        {
+            txtbRefNo.Clear();
+            txtbStockInBy.Clear();
+            dtpStockInDate.Value = DateTime.Now;
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+         
+                if (dataGridView2.Rows.Count > 0)
+                {
+                    if (MessageBox.Show("Are you sure you want to save record?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        for (int i = 0; i < dataGridView2.Rows.Count; i++)
+                        {
+                        //This will update tblProduct quantity
+                        conn.Open();
+                        cmd = new SqlCommand("UPDATE tblProduct SET quantity=quantity + "+ int.Parse(dataGridView2.Rows[i].Cells[7].Value.ToString())+" WHERE pcode LIKE '" + dataGridView2.Rows[i].Cells[3].Value.ToString() + "'",conn);
+                        cmd.ExecuteNonQuery();
+                        conn.Close();
+
+                        //This will update tblStockIn quantity
+                        conn.Open();
+                        cmd = new SqlCommand("UPDATE tblStockIn SET quantity=quantity + "+ int.Parse(dataGridView2.Rows[i].Cells[7].Value.ToString()) +", status = 'Done' WHERE id LIKE '"+ dataGridView2.Rows[i].Cells[1].Value.ToString() + "'",conn);
+                        cmd.ExecuteNonQuery();
+                        conn.Close();
+                        }
+                        clear();
+                        loadStockIn();
+                    }
+                }
+        }
+        public void refresh()
+        {
+            try
+            {
+                int i = 0;
+
+                dataGridView2.Rows.Clear();
+                conn.Open();
+                cmd = new SqlCommand("SELECT * FROM viewStockIn", conn);
+                dataReader = cmd.ExecuteReader();
+                while (dataReader.Read())
+                {
+                    i += 1;
+                    dataGridView2.Rows.Add(i, dataReader["id"].ToString(), dataReader["refno"].ToString(), dataReader["pcode"].ToString(), dataReader["pdesc"].ToString(), DateTime.Parse(dataReader["sidate"].ToString()).ToString("dd-MMM-yyyy"), dataReader["stockindateby"].ToString(), dataReader["quantity"].ToString());
+                }
+                dataReader.Close();
+                conn.Close();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            refresh();
+        }
+
+        private void btnLoadRec_Click(object sender, EventArgs e)
+        {
+            loadStockInHistory();
         }
     }
 }

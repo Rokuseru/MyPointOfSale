@@ -17,6 +17,8 @@ namespace MyPointOfSale
         SqlCommand cmd = new SqlCommand();
         DBConnection dbCon = new DBConnection();
         SqlDataReader dR;
+
+        [Obsolete]
         public frmProductList()
         {
             InitializeComponent();
@@ -62,12 +64,13 @@ namespace MyPointOfSale
             }
             else if (colName == "Delete")
             {
-                if (MessageBox.Show("Delete Record?", "Delete Record", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)==DialogResult.Yes)
+                if (MessageBox.Show("Delete Record?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)==DialogResult.Yes)
                 {
                     conn.Open();
                     cmd = new SqlCommand("DELETE FROM tblProduct WHERE pcode LIKE '"+dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString()+"'",conn);
                     cmd.ExecuteNonQuery();
                     conn.Close();
+                    MessageBox.Show("Deleted Successfully", "POS", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     loadRecords();
                 }
             }

@@ -52,7 +52,9 @@ namespace MyPointOfSale
 
         private void btnManageProduct_Click(object sender, EventArgs e)
         {
+            #pragma warning disable CS0612 // Type or member is obsolete
             frmProductList productList = new frmProductList();
+            #pragma warning restore CS0612 // Type or member is obsolete
             productList.TopLevel = false;
             mainFormPanel.Controls.Add(productList);
             productList.BringToFront();
@@ -63,9 +65,16 @@ namespace MyPointOfSale
         private void btnStockIn_Click(object sender, EventArgs e)
         {
             frmStockIn frmStock = new frmStockIn();
-            frmStock.loadProduct();
+            frmStock.TopLevel = false;
+            mainFormPanel.Controls.Add(frmStock);
             frmStock.loadStockIn();
-            frmStock.ShowDialog();
+            frmStock.Show();
+        }
+
+        private void btnShowPos_Click(object sender, EventArgs e)
+        {
+            frmPointOfSale pointOfSale = new frmPointOfSale();
+            pointOfSale.Show();
         }
     }
 }

@@ -38,7 +38,7 @@
             this.btnManageBrand = new System.Windows.Forms.Button();
             this.btnCategory = new System.Windows.Forms.Button();
             this.btnManageProduct = new System.Windows.Forms.Button();
-            this.btnManageSales = new System.Windows.Forms.Button();
+            this.btnShowPos = new System.Windows.Forms.Button();
             this.btnDashboard = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -86,7 +86,7 @@
             this.panel2.Controls.Add(this.btnManageBrand);
             this.panel2.Controls.Add(this.btnCategory);
             this.panel2.Controls.Add(this.btnManageProduct);
-            this.panel2.Controls.Add(this.btnManageSales);
+            this.panel2.Controls.Add(this.btnShowPos);
             this.panel2.Controls.Add(this.btnDashboard);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.label1);
@@ -213,21 +213,22 @@
             this.btnManageProduct.UseVisualStyleBackColor = true;
             this.btnManageProduct.Click += new System.EventHandler(this.btnManageProduct_Click);
             // 
-            // btnManageSales
+            // btnShowPos
             // 
-            this.btnManageSales.FlatAppearance.BorderSize = 0;
-            this.btnManageSales.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnManageSales.Font = new System.Drawing.Font("Open Sans", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnManageSales.ForeColor = System.Drawing.Color.White;
-            this.btnManageSales.Image = global::MyPointOfSale.Properties.Resources.icons8_shopping_cart_30__1_;
-            this.btnManageSales.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnManageSales.Location = new System.Drawing.Point(0, 189);
-            this.btnManageSales.Name = "btnManageSales";
-            this.btnManageSales.Size = new System.Drawing.Size(223, 47);
-            this.btnManageSales.TabIndex = 4;
-            this.btnManageSales.Text = "   Manage Sales";
-            this.btnManageSales.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnManageSales.UseVisualStyleBackColor = true;
+            this.btnShowPos.FlatAppearance.BorderSize = 0;
+            this.btnShowPos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnShowPos.Font = new System.Drawing.Font("Open Sans", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnShowPos.ForeColor = System.Drawing.Color.White;
+            this.btnShowPos.Image = global::MyPointOfSale.Properties.Resources.icons8_shopping_cart_30__1_;
+            this.btnShowPos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnShowPos.Location = new System.Drawing.Point(0, 189);
+            this.btnShowPos.Name = "btnShowPos";
+            this.btnShowPos.Size = new System.Drawing.Size(223, 47);
+            this.btnShowPos.TabIndex = 4;
+            this.btnShowPos.Text = "   Point Of Sale";
+            this.btnShowPos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnShowPos.UseVisualStyleBackColor = true;
+            this.btnShowPos.Click += new System.EventHandler(this.btnShowPos_Click);
             // 
             // btnDashboard
             // 
@@ -291,12 +292,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1027, 653);
-            this.ControlBox = false;
             this.Controls.Add(this.mainFormPanel);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Open Sans", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "mainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.panel1.ResumeLayout(false);
@@ -316,7 +315,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnCategory;
-        private System.Windows.Forms.Button btnManageSales;
+        private System.Windows.Forms.Button btnShowPos;
         private System.Windows.Forms.Button btnUserSettings;
         private System.Windows.Forms.Button btnSystemSettings;
         private System.Windows.Forms.Button btnRecords;
